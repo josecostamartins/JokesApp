@@ -8,11 +8,12 @@
 import Foundation
 
 protocol JokeService {
-    func getAllJokes(page: Int) -> JokeResponse
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, Error>) -> Void)
 }
 
 final class MockJokeService: JokeService {
-    func getAllJokes(page: Int) -> JokeResponse {
+
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, Error>) -> Void) {
         let response: Data = """
             {
               "current_page": 1,
@@ -43,10 +44,9 @@ final class MockJokeService: JokeService {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let jokes = try jsonDecoder.decode(JokeResponse.self, from: response)
-            print(jokes)
-            return jokes
+            completion(.success(jokes))
         } catch let error {
-            fatalError("Could not parse json: \(error)")
+            completion(.failure(error))
         }
     }
 }

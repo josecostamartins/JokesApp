@@ -29,9 +29,16 @@ final class DadJokesViewModel: JokesViewModel {
     }
 
     func viewDidLoad() {
-        let jokesResult = jokesService.getAllJokes(page: currentPage)
-        jokesList = jokesResult.results
-        currentPage = jokesResult.nextPage
-        handler?.didReceiveJokes()
+        jokesService.getAllJokes(page: currentPage) { [weak self] result in
+            switch result {
+                case .success(let jokesResult):
+                    self?.jokesList = jokesResult.results
+                    self?.currentPage = jokesResult.nextPage
+                    self?.handler?.didReceiveJokes()
+                case .failure(_):
+                    break
+            }
+
+        }
     }
 }
