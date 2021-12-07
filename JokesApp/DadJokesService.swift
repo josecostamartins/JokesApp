@@ -7,37 +7,154 @@
 
 import Foundation
 
-protocol JokeService {
-    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, Error>) -> Void)
+enum DadJokesError: Error {
+    case unknown
+
+    var description: String {
+        switch self {
+            case .unknown: return "An unknown error occurred, please retry"
+        }
+    }
 }
 
-final class MockJokeService: JokeService {
+protocol JokeService {
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, DadJokesError>) -> Void)
+}
 
-    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, Error>) -> Void) {
+final class DadJokeService: JokeService {
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, DadJokesError>) -> Void) {
+        guard let url = URL(string: "https://icanhazdadjoke.com/search?page=\(page)") else {
+            completion(.failure(.unknown))
+            return
+        }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+
+            guard let response = response as? HTTPURLResponse else {
+                DispatchQueue.main.async {
+                    completion(.failure(.unknown))
+                }
+                return
+            }
+
+            if 200 ..< 300 ~= response.statusCode {
+                DispatchQueue.main.async {
+                    guard let response = JokeResponse.from(data: data) else {
+                        completion(.failure(.unknown))
+                        return
+                    }
+                    completion(.success(response))
+                }
+            }
+        }.resume()
+
+    }
+}
+
+final class ErrorMockJokeService: JokeService {
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, DadJokesError>) -> Void) {
+        completion(.failure(.unknown))
+    }
+}
+
+final class SuccessMockJokeService: JokeService {
+
+    func getAllJokes(page: Int, completion: @escaping (Result<JokeResponse, DadJokesError>) -> Void) {
         let response: Data = """
             {
-              "current_page": 1,
-              "limit": 20,
-              "next_page": 2,
-              "previous_page": 1,
-              "results": [
-                {
-                  "id": "M7wPC5wPKBd",
-                  "joke": "Did you hear the one about the guy with the broken hearing aid? Neither did he."
-                },
-                {
-                  "id": "MRZ0LJtHQCd",
-                  "joke": "What do you call a fly without wings? A walk."
-                },
-                {
-                  "id": "usrcaMuszd",
-                  "joke": "What's the worst thing about ancient history class? The teachers tend to Babylon."
-                }
-              ],
-              "search_term": "",
-              "status": 200,
-              "total_jokes": 307,
-              "total_pages": 15
+               "current_page":1,
+               "limit":20,
+               "next_page":2,
+               "previous_page":1,
+               "results":[
+                  {
+                     "id":"0189hNRf2g",
+                     "joke":"I'm tired of following my dreams. I'm just going to ask them where they are going and meet up with them later."
+                  },
+                  {
+                     "id":"08EQZ8EQukb",
+                     "joke":"Did you hear about the guy whose whole left side was cut off? He's all right now."
+                  },
+                  {
+                     "id":"08xHQCdx5Ed",
+                     "joke":"Why didn\u{2019}t the skeleton cross the road? Because he had no guts."
+                  },
+                  {
+                     "id":"0DQKB51oGlb",
+                     "joke":"What did one nut say as he chased another nut?  I'm a cashew!"
+                  },
+                  {
+                     "id":"0DtrrOZDlyd",
+                     "joke":"Chances are if you' ve seen one shopping center, you've seen a mall."
+                  },
+                  {
+                     "id":"0LuXvkq4Muc",
+                     "joke":"I knew I shouldn't steal a mixer from work, but it was a whisk I was willing to take."
+                  },
+                  {
+                     "id":"0ga2EdN7prc",
+                     "joke":"How come the stadium got hot after the game? Because all of the fans left."
+                  },
+                  {
+                     "id":"0oO71TSv4Ed",
+                     "joke":"Why was it called the dark ages? Because of all the knights. "
+                  },
+                  {
+                     "id":"0oz51ozk3ob",
+                     "joke":"A steak pun is a rare medium well done."
+                  },
+                  {
+                     "id":"0ozAXv4Mmjb",
+                     "joke":"Why did the tomato blush? Because it saw the salad dressing."
+                  },
+                  {
+                     "id":"0wcFBQfiGBd",
+                     "joke":"Did you hear the joke about the wandering nun? She was a roman catholic."
+                  },
+                  {
+                     "id":"189xHQ7pOuc",
+                     "joke":"What creature is smarter than a talking parrot? A spelling bee."
+                  },
+                  {
+                     "id":"18Elj3EIYvc",
+                     "joke":"I'll tell you what often gets over looked... garden fences."
+                  },
+                  {
+                     "id":"18h3wcU8xAd",
+                     "joke":"Why did the kid cross the playground? To get to the other slide."
+                  },
+                  {
+                     "id":"1DIRSfx51Dd",
+                     "joke":"Why do birds fly south for the winter? Because it's too far to walk."
+                  },
+                  {
+                     "id":"1DQZDY0gVnb",
+                     "joke":"What is a centipedes's favorite Beatle song?  I want to hold your hand, hand, hand, hand..."
+                  },
+                  {
+                     "id":"1DQZvXvX8Ed",
+                     "joke":"My first time using an elevator was an uplifting experience. The second time let me down."
+                  },
+                  {
+                     "id":"1DQZvcFBdib",
+                     "joke":"To be Frank, I'd have to change my name."
+                  },
+                  {
+                     "id":"1Dt4M7Ufaxc",
+                     "joke":"Slept like a log last night \u{2026} woke up in the fireplace."
+                  },
+                  {
+                     "id":"1T01LBXLuzd",
+                     "joke":"Why does a Moon-rock taste better than an Earth-rock? Because it's a little meteor."
+                  }
+               ],
+               "search_term":"",
+               "status":200,
+               "total_jokes":649,
+               "total_pages":33
             }
         """.data(using: .utf8)!
         do {
@@ -45,8 +162,8 @@ final class MockJokeService: JokeService {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let jokes = try jsonDecoder.decode(JokeResponse.self, from: response)
             completion(.success(jokes))
-        } catch let error {
-            completion(.failure(error))
+        } catch {
+            completion(.failure(.unknown))
         }
     }
 }

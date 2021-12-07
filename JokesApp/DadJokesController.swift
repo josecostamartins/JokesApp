@@ -9,14 +9,32 @@ import UIKit
 
 class DadJokesViewController: UIViewController {
 
-    private var tableView: UITableView
-    private let jokesViewModel: JokesViewModel
+    private struct Constants {
+        static let cellIdentifier: String = "cell"
+        static let spacing: CGFloat = 16
+        static let labelHeight: CGFloat = 56
+    }
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        return tableView
+    }()
+    private var errorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private var jokesViewModel: JokesViewModel
     private var jokesList: [Joke] = []
 
     init(jokesViewModel: JokesViewModel = DadJokesViewModel()) {
-        self.tableView = UITableView()
         self.jokesViewModel = jokesViewModel
         super.init(nibName: nil, bundle: nil)
+        self.jokesViewModel.handler = self
     }
 
     required init?(coder: NSCoder) {
@@ -31,10 +49,17 @@ class DadJokesViewController: UIViewController {
     }
 
     private func setup() {
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(errorLabel)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
+            //Error Label
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.spacing),
+            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.spacing),
+            errorLabel.heightAnchor.constraint(equalToConstant: Constants.labelHeight),
+
+            // Table View
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -50,9 +75,9 @@ extension DadJokesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier)
         if (cell == nil) {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
             cell?.textLabel?.numberOfLines = 0
             let item = jokesViewModel.jokesList[indexPath.row]
             cell?.textLabel?.text = item.joke
@@ -62,7 +87,15 @@ extension DadJokesViewController: UITableViewDataSource {
 }
 
 extension DadJokesViewController: JokesHandler {
+    func didReceiveError(error: String) {
+        tableView.isHidden = true
+        errorLabel.isHidden = false
+        errorLabel.text = error
+    }
+
     func didReceiveJokes() {
+        errorLabel.isHidden = true
+        tableView.isHidden = false
         tableView.reloadData()
     }
 }

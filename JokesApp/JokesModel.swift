@@ -7,13 +7,31 @@
 
 import Foundation
 
-struct JokeResponse: Codable {
+struct Joke: Codable {
+    let id: String
+    let joke: String
+}
+
+struct JokeResponse {
     let currentPage: Int
     let nextPage: Int
     let results: [Joke]
 }
 
-struct Joke: Codable {
-    let id: String
-    let joke: String
+extension JokeResponse: Codable {
+
+    public static func from(data: Data?) -> JokeResponse? {
+        guard let data = data else { return nil }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+            let response = try decoder.decode(JokeResponse.self, from: data)
+            return response
+        } catch let error {
+                print(error)
+        }
+
+        return nil
+    }
 }

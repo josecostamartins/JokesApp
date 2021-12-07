@@ -10,19 +10,21 @@ import Foundation
 protocol JokesViewModel {
     func viewDidLoad()
     var jokesList: [Joke] { get }
+    var handler: JokesHandler? { get set }
 }
 
 protocol JokesHandler: AnyObject {
     func didReceiveJokes()
+    func didReceiveError(error: String)
 }
 
 final class DadJokesViewModel: JokesViewModel {
     private let jokesService: JokeService
     private(set) var jokesList: [Joke]
     private var currentPage: Int
-    private weak var handler: JokesHandler?
+    weak var handler: JokesHandler?
 
-    init(jokesService: JokeService = MockJokeService()) {
+    init(jokesService: JokeService = DadJokeService()) {
         self.jokesService = jokesService
         self.jokesList = []
         self.currentPage = 1
@@ -35,10 +37,9 @@ final class DadJokesViewModel: JokesViewModel {
                     self?.jokesList = jokesResult.results
                     self?.currentPage = jokesResult.nextPage
                     self?.handler?.didReceiveJokes()
-                case .failure(_):
-                    break
+                case .failure(let error):
+                    self?.handler?.didReceiveError(error: error.description)
             }
-
         }
     }
 }

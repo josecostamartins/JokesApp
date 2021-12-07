@@ -11,24 +11,17 @@
 		597CA0E5275F911300603F62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA0E4275F911300603F62 /* SceneDelegate.swift */; };
 		597CA0E7275F911300603F62 /* DadJokesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA0E6275F911300603F62 /* DadJokesController.swift */; };
 		597CA0EC275F911900603F62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597CA0EB275F911900603F62 /* Assets.xcassets */; };
-		597CA0FA275F911A00603F62 /* JokesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA0F9275F911A00603F62 /* JokesAppTests.swift */; };
-		597CA104275F911A00603F62 /* JokesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA103275F911A00603F62 /* JokesAppUITests.swift */; };
-		597CA106275F911A00603F62 /* JokesAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA105275F911A00603F62 /* JokesAppUITestsLaunchTests.swift */; };
+		597CA0FA275F911A00603F62 /* JokesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA0F9275F911A00603F62 /* JokesViewModelTests.swift */; };
 		597CA114275F937800603F62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 597CA112275F937800603F62 /* LaunchScreen.storyboard */; };
 		597CA119275F951200603F62 /* DadJokesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA118275F951200603F62 /* DadJokesService.swift */; };
 		597CA11B275F961300603F62 /* JokesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA11A275F961300603F62 /* JokesModel.swift */; };
 		597CA11D275F986200603F62 /* JokesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA11C275F986200603F62 /* JokesViewModel.swift */; };
+		597CA11F27601C7300603F62 /* MockJokesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA11E27601C7300603F62 /* MockJokesHandler.swift */; };
+		597CA1212760269A00603F62 /* MockJokeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CA1202760269A00603F62 /* MockJokeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		597CA0F6275F911A00603F62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 597CA0D7275F911300603F62 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 597CA0DE275F911300603F62;
-			remoteInfo = JokesApp;
-		};
-		597CA100275F911A00603F62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 597CA0D7275F911300603F62 /* Project object */;
 			proxyType = 1;
@@ -45,14 +38,13 @@
 		597CA0EB275F911900603F62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		597CA0F0275F911900603F62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		597CA0F5275F911A00603F62 /* JokesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		597CA0F9275F911A00603F62 /* JokesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesAppTests.swift; sourceTree = "<group>"; };
-		597CA0FF275F911A00603F62 /* JokesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		597CA103275F911A00603F62 /* JokesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesAppUITests.swift; sourceTree = "<group>"; };
-		597CA105275F911A00603F62 /* JokesAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		597CA0F9275F911A00603F62 /* JokesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesViewModelTests.swift; sourceTree = "<group>"; };
 		597CA113275F937800603F62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		597CA118275F951200603F62 /* DadJokesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadJokesService.swift; sourceTree = "<group>"; };
 		597CA11A275F961300603F62 /* JokesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesModel.swift; sourceTree = "<group>"; };
 		597CA11C275F986200603F62 /* JokesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesViewModel.swift; sourceTree = "<group>"; };
+		597CA11E27601C7300603F62 /* MockJokesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJokesHandler.swift; sourceTree = "<group>"; };
+		597CA1202760269A00603F62 /* MockJokeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJokeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		597CA0FC275F911A00603F62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,7 +70,6 @@
 			children = (
 				597CA0E1275F911300603F62 /* JokesApp */,
 				597CA0F8275F911A00603F62 /* JokesAppTests */,
-				597CA102275F911A00603F62 /* JokesAppUITests */,
 				597CA0E0275F911300603F62 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,7 +79,6 @@
 			children = (
 				597CA0DF275F911300603F62 /* JokesApp.app */,
 				597CA0F5275F911A00603F62 /* JokesAppTests.xctest */,
-				597CA0FF275F911A00603F62 /* JokesAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,18 +102,11 @@
 		597CA0F8275F911A00603F62 /* JokesAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				597CA0F9275F911A00603F62 /* JokesAppTests.swift */,
+				597CA0F9275F911A00603F62 /* JokesViewModelTests.swift */,
+				597CA11E27601C7300603F62 /* MockJokesHandler.swift */,
+				597CA1202760269A00603F62 /* MockJokeService.swift */,
 			);
 			path = JokesAppTests;
-			sourceTree = "<group>";
-		};
-		597CA102275F911A00603F62 /* JokesAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				597CA103275F911A00603F62 /* JokesAppUITests.swift */,
-				597CA105275F911A00603F62 /* JokesAppUITestsLaunchTests.swift */,
-			);
-			path = JokesAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,24 +147,6 @@
 			productReference = 597CA0F5275F911A00603F62 /* JokesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		597CA0FE275F911A00603F62 /* JokesAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 597CA10F275F911A00603F62 /* Build configuration list for PBXNativeTarget "JokesAppUITests" */;
-			buildPhases = (
-				597CA0FB275F911A00603F62 /* Sources */,
-				597CA0FC275F911A00603F62 /* Frameworks */,
-				597CA0FD275F911A00603F62 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				597CA101275F911A00603F62 /* PBXTargetDependency */,
-			);
-			name = JokesAppUITests;
-			productName = JokesAppUITests;
-			productReference = 597CA0FF275F911A00603F62 /* JokesAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,10 +161,6 @@
 						CreatedOnToolsVersion = 13.0;
 					};
 					597CA0F4275F911A00603F62 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 597CA0DE275F911300603F62;
-					};
-					597CA0FE275F911A00603F62 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 597CA0DE275F911300603F62;
 					};
@@ -227,7 +181,6 @@
 			targets = (
 				597CA0DE275F911300603F62 /* JokesApp */,
 				597CA0F4275F911A00603F62 /* JokesAppTests */,
-				597CA0FE275F911A00603F62 /* JokesAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,13 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		597CA0F3275F911A00603F62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		597CA0FD275F911A00603F62 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,16 +222,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				597CA0FA275F911A00603F62 /* JokesAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		597CA0FB275F911A00603F62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				597CA106275F911A00603F62 /* JokesAppUITestsLaunchTests.swift in Sources */,
-				597CA104275F911A00603F62 /* JokesAppUITests.swift in Sources */,
+				597CA0FA275F911A00603F62 /* JokesViewModelTests.swift in Sources */,
+				597CA11F27601C7300603F62 /* MockJokesHandler.swift in Sources */,
+				597CA1212760269A00603F62 /* MockJokeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,11 +235,6 @@
 			isa = PBXTargetDependency;
 			target = 597CA0DE275F911300603F62 /* JokesApp */;
 			targetProxy = 597CA0F6275F911A00603F62 /* PBXContainerItemProxy */;
-		};
-		597CA101275F911A00603F62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 597CA0DE275F911300603F62 /* JokesApp */;
-			targetProxy = 597CA100275F911A00603F62 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -536,52 +470,6 @@
 			};
 			name = Release;
 		};
-		597CA110275F911A00603F62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2SCQZC95KT;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = martins.com.br.JokesAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JokesApp;
-			};
-			name = Debug;
-		};
-		597CA111275F911A00603F62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2SCQZC95KT;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = martins.com.br.JokesAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = JokesApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -608,15 +496,6 @@
 			buildConfigurations = (
 				597CA10D275F911A00603F62 /* Debug */,
 				597CA10E275F911A00603F62 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		597CA10F275F911A00603F62 /* Build configuration list for PBXNativeTarget "JokesAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				597CA110275F911A00603F62 /* Debug */,
-				597CA111275F911A00603F62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
